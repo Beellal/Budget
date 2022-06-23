@@ -72,6 +72,7 @@
         };
         itemID++;
         itemList.push(expense);
+        console.log(itemList)
         addExpense(expense);
         showBalance();
       }
@@ -81,21 +82,21 @@
       const div = document.createElement("div");
       div.classList.add("expense");
       div.innerHTML = 
-      `<div class="expense-item d-flex justify-content-between align-items-baseline">
-       <h6 class="expense-title mb-0 text-uppercase list-item">- ${
+      `
+       <h6 class="">- ${
          expense.title
        }</h6>
-       <h5 class="expense-amount mb-0 list-item">${expense.amount}</h5>
+       <h5 class="">${expense.amount}</h5>
        <!-- icons -->
-      <div class="expense-icons list-item">
-          <a href="#" class="edit-icon mx-2" data-id="${expense.id}">
-           <i class="fas fa-edit"></i>
+      <div class="">
+          <a href="#"  class="edit-icon mx-2" data-id="${expense.id}">
+           <i  class="fas fa-edit"></i>
           </a>
-          <a href="#" class="delete-icon" data-id="${expense.id}">
-           <i class="fas fa-trash"></i>
+          <a href="#" class="delete-icon"  data-id="${expense.id}">
+           <i  class="fas fa-trash"></i>
           </a>
          </div>
-      </div>
+      
    `;
    expenseList.appendChild(div);
     }
@@ -115,7 +116,7 @@
     //bouton edit expense
 function editExpense(element){
   let id = parseInt(element.dataset.id);
-  let parent = element.parentElement.parentElement.parentElement;
+  let parent = element.parentElement.parentElement;
   // supression du DOM
   expenseList.removeChild(parent);
   // supression de la liste 
@@ -145,7 +146,7 @@ function editExpense(element){
 function deleteExpense (element){
   let id = parseInt(element.dataset.id);
   //console.log(id);
-  let parent = element.parentElement.parentElement.parentElement;
+  let parent = element.parentElement.parentElement;
   // supression du DOM
     expenseList.removeChild(parent);
   // supression de item
@@ -156,18 +157,24 @@ function deleteExpense (element){
   showBalance();
 
 }
+  
 expenseList.addEventListener("click" ,function(event){
+  console.log(expenseList );
+  console.log(event.target.parentElement);
   if(event.target.parentElement.classList.contains("edit-icon")){
+   
     editExpense(event.target.parentElement);
   }
   else if (event.target.parentElement.classList.contains("delete-icon")){
     deleteExpense(event.target.parentElement);
-   /*  showBalance();
-  addExpense(expense); */
-  //totalExpense();
+    /*showBalance();
+  addExpense(expense); 
+  //totalExpense();*/
   }
 
 });
+
+
 
 /* document.addEventListener("DOMContentLoaded", function() {
   
